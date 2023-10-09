@@ -1,21 +1,22 @@
 {
   "files": {
-    "main.css": "/car-rent-app/static/css/main.b5320759.css",
-    "main.js": "/car-rent-app/static/js/main.d1637991.js",
+    "main.css": "/car-rent-app/static/css/main.49b7ef7b.css",
+    "main.js": "/car-rent-app/static/js/main.3a53fae6.js",
     "static/js/983.74b7f455.chunk.js": "/car-rent-app/static/js/983.74b7f455.chunk.js",
-    "static/js/103.ecf2da53.chunk.js": "/car-rent-app/static/js/103.ecf2da53.chunk.js",
-    "static/js/395.582728e0.chunk.js": "/car-rent-app/static/js/395.582728e0.chunk.js",
-    "static/js/763.036c91f3.chunk.js": "/car-rent-app/static/js/763.036c91f3.chunk.js",
+    "static/js/184.106d397a.chunk.js": "/car-rent-app/static/js/184.106d397a.chunk.js",
+    "static/js/699.b9fc26e6.chunk.js": "/car-rent-app/static/js/699.b9fc26e6.chunk.js",
+    "static/js/4.ed07c906.chunk.js": "/car-rent-app/static/js/4.ed07c906.chunk.js",
+    "static/media/fallback_sedan.jpg": "/car-rent-app/static/media/fallback_sedan.34f6718ee70066abddb7.jpg",
     "index.html": "/car-rent-app/index.html",
-    "main.b5320759.css.map": "/car-rent-app/static/css/main.b5320759.css.map",
-    "main.d1637991.js.map": "/car-rent-app/static/js/main.d1637991.js.map",
+    "main.49b7ef7b.css.map": "/car-rent-app/static/css/main.49b7ef7b.css.map",
+    "main.3a53fae6.js.map": "/car-rent-app/static/js/main.3a53fae6.js.map",
     "983.74b7f455.chunk.js.map": "/car-rent-app/static/js/983.74b7f455.chunk.js.map",
-    "103.ecf2da53.chunk.js.map": "/car-rent-app/static/js/103.ecf2da53.chunk.js.map",
-    "395.582728e0.chunk.js.map": "/car-rent-app/static/js/395.582728e0.chunk.js.map",
-    "763.036c91f3.chunk.js.map": "/car-rent-app/static/js/763.036c91f3.chunk.js.map"
+    "184.106d397a.chunk.js.map": "/car-rent-app/static/js/184.106d397a.chunk.js.map",
+    "699.b9fc26e6.chunk.js.map": "/car-rent-app/static/js/699.b9fc26e6.chunk.js.map",
+    "4.ed07c906.chunk.js.map": "/car-rent-app/static/js/4.ed07c906.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.b5320759.css",
-    "static/js/main.d1637991.js"
+    "static/css/main.49b7ef7b.css",
+    "static/js/main.3a53fae6.js"
   ]
 }
