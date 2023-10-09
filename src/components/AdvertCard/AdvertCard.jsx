@@ -5,7 +5,18 @@ import { addToFavorites, removeFromFavorites } from "redux/favorites/slice";
 import { Button } from "@mui/material";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import FavoriteIcon from "@mui/icons-material/Favorite";
-import { ImgWrapper, favoriteButtonStyles } from "./AdvertCard.styled";
+import Paper from "@mui/material/Paper";
+import fallbackImageUrl from "../../public/images/fallback_sedan.jpg";
+import {
+  ImgWrapper,
+  DescriptionWrapper,
+  AdvertImage,
+  Details,
+  DetailsList,
+  DetailsListItem,
+  Description,
+  DescriptionItem,
+} from "./AdvertCard.styled";
 
 const AdvertCard = ({ item }) => {
   const dispatch = useDispatch();
@@ -14,44 +25,78 @@ const AdvertCard = ({ item }) => {
 
   const toggleFavorite = () => {
     if (isFavorite) {
-      dispatch(removeFromFavorites(item.id));
+      dispatch(removeFromFavorites(item));
     } else {
-      dispatch(addToFavorites(item.id));
+      dispatch(addToFavorites(item));
     }
   };
 
   return (
-    <div>
+    <Paper elevation={0} sx={{ height: 426 }}>
       <ImgWrapper>
-        <img
+        <AdvertImage
           alt={`${item.make} ${item.model}`}
           src={item.img}
-          width={200}
-          height={200}
+          onError={(e) => {
+            console.log(e);
+            e.target.src = fallbackImageUrl;
+          }}
         />
-        <Button onClick={toggleFavorite} css={favoriteButtonStyles}>
+        <Button
+          onClick={toggleFavorite}
+          sx={{ position: "absolute", top: 0, right: -5 }}
+        >
           {isFavorite ? (
-            <FavoriteIcon />
+            <FavoriteIcon style={{ color: "#3470FF" }} />
           ) : (
             <FavoriteBorderIcon style={{ color: "white" }} />
           )}
         </Button>
       </ImgWrapper>
+      <DescriptionWrapper>
+        <Description>
+          <DescriptionItem>{item.make}</DescriptionItem>{" "}
+          <DescriptionItem isModel style={{ color: "#3470FF" }}>
+            {item.model},
+          </DescriptionItem>
+          <DescriptionItem> {item.year}</DescriptionItem>
+        </Description>
+        <DescriptionItem style={{ marginLeft: 5 }}>
+          {item.rentalPrice}
+        </DescriptionItem>
+      </DescriptionWrapper>
       <div>
-        <p>
-          {item.make} {item.model},{item.year}
-        </p>
-        <p>{item.rentalPrice}</p>
+        <DetailsList>
+          <DetailsListItem>
+            <Details>{city}</Details>
+          </DetailsListItem>
+          <DetailsListItem>
+            <Details>{country}</Details>
+          </DetailsListItem>
+          <DetailsListItem>
+            <Details>{item.rentalCompany}</Details>
+          </DetailsListItem>
+          <DetailsListItem>
+            <Details>{item.type}</Details>
+          </DetailsListItem>
+          <DetailsListItem>
+            <Details>{item.make}</Details>
+          </DetailsListItem>
+          <DetailsListItem>
+            <Details>{item.id}</Details>
+          </DetailsListItem>
+          <DetailsListItem>
+            <Details>{item.accessories[0]}</Details>
+          </DetailsListItem>
+        </DetailsList>
       </div>
-      <div>
-        <p>
-          {city} | {country} | {item.rentalCompany} | {item.type} | {item.make}{" "}
-          | {item.id} | {item.accessories[0]}
-        </p>
-      </div>
-
-      <Button variant="contained">Learn More</Button>
-    </div>
+      <Button
+        variant="contained"
+        sx={{ width: "100%", backgroundColor: "#3470FF", borderRadius: 12 }}
+      >
+        Learn More
+      </Button>
+    </Paper>
   );
 };
 

@@ -1,15 +1,16 @@
 import AdvertCard from "components/AdvertCard";
+import Grid from "@mui/material/Grid";
 
 const AdvertGrid = ({ items }) => {
   return (
     <div>
-      <ul>
+      <Grid container spacing={3}>
         {items.map((item) => (
-          <li key={item.id}>
+          <Grid item xs={3} key={item.id}>
             <AdvertCard item={item} />
-          </li>
+          </Grid>
         ))}
-      </ul>
+      </Grid>
     </div>
   );
 };

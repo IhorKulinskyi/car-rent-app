@@ -16,7 +16,7 @@ import favoritesReducer from "./favorites/slice";
 const favoritesPersistConfig = {
   key: "favorites",
   storage,
-  whitelist: ["itemIds"],
+  whitelist: ["items"],
 };
 
 export const store = configureStore({

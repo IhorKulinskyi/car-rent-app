@@ -14,14 +14,7 @@ const Catalog = () => {
     dispatch(fetchAdverts());
   }, [dispatch]);
 
-  return isLoading ? (
-    <Spinner />
-  ) : (
-    <>
-      <div>Catalog</div>
-      <AdvertGrid items={adverts} />
-    </>
-  );
+  return isLoading ? <Spinner /> : <AdvertGrid items={adverts} />;
 };
 
 export default Catalog;
