@@ -1,5 +1,7 @@
+import { Container } from "@mui/material";
+
 const HomePage = () => {
-  return <div>Homepage</div>;
+  return <Container>homepage</Container>;
 };
 
 export default HomePage;

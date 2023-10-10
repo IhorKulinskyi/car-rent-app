@@ -65,3 +65,10 @@ export const DescriptionItem = styled.p`
     isModel &&
     "flex-grow: 1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"};
 `;
+
+export const ModalContainer = styled.div`
+  width: 540px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
