@@ -1,9 +1,10 @@
-import { formatAddress } from "helpers";
+import PropTypes from "prop-types";
+import { formatAddress, formatNumberWithCommas } from "helpers";
+import DetailsList from "components/DetailsList";
 import {
-  DetailsList,
-  DetailsListItem,
-  Details,
   ImgWrapper,
+  DescriptionItem,
+  Description,
 } from "components/AdvertCard/AdvertCard.styled";
 import {
   ConditionsItem,
@@ -13,16 +14,33 @@ import {
 } from "components/CarInfo/Car.info.styled";
 import Container from "@mui/material/Container";
 import Button from "@mui/material/Button";
+import Link from "@mui/material/Link";
 import fallbackImageUrl from "../../public/images/fallback_sedan.jpg";
 
 const CarInfo = ({ item }) => {
   const { city, country } = formatAddress(item.address);
+  const mileage = formatNumberWithCommas(item.mileage);
+  const phoneNumber = "+380730000000";
+
   const accesoirsAndFunctionalities = [
     ...item.accessories,
     ...item.functionalities,
   ];
+  const details = [
+    city,
+    country,
+    `Id: ${item.id}`,
+    `Year: ${item.year}`,
+    `Type: ${item.type}`,
+    `Fuel consumption: ${item.fuelConsumption}`,
+    `Engime Size: ${item.engineSize}`,
+  ];
   const [rawAge, ...conditions] = item.rentalConditions.split("\n");
   const [label, age] = rawAge.split(": ");
+
+  const handlePhoneCall = () => {
+    window.location.href = `tel:${phoneNumber}`;
+  };
   return (
     <Container>
       <div>
@@ -36,46 +54,27 @@ const CarInfo = ({ item }) => {
             }}
           />
         </ImgWrapper>
-        <p>
-          {item.make}
-          {item.model},{item.year}
-        </p>
-        <DetailsList>
-          <DetailsListItem>
-            <Details>{city}</Details>
-          </DetailsListItem>
-          <DetailsListItem>
-            <Details>{country}</Details>
-          </DetailsListItem>
-          <DetailsListItem>
-            <Details>Id: {item.id}</Details>
-          </DetailsListItem>
-          <DetailsListItem>
-            <Details>Year: {item.year}</Details>
-          </DetailsListItem>
-          <DetailsListItem>
-            <Details>Type: {item.type}</Details>
-          </DetailsListItem>
-          <DetailsListItem>
-            <Details>Fuel consumption: {item.fuelConsumption}</Details>
-          </DetailsListItem>
-          <DetailsListItem>
-            <Details>Engime Size: {item.engineSize}</Details>
-          </DetailsListItem>
-        </DetailsList>
-        <p>{item.description}</p>
+        <Description style={{ display: "inline-flex", marginBottom: "10px" }}>
+          <DescriptionItem>{item.make}</DescriptionItem>{" "}
+          <DescriptionItem isModel style={{ color: "#3470FF" }}>
+            {item.model},
+          </DescriptionItem>
+          <DescriptionItem> {item.year}</DescriptionItem>
+        </Description>
+        <DetailsList items={details} />
+        <DescriptionItem style={{ marginBottom: "15px" }}>
+          {item.description}
+        </DescriptionItem>
         <div>
-          <p>Accessories and functionalities:</p>
-          <DetailsList>
-            {accesoirsAndFunctionalities.map((item) => (
-              <DetailsListItem key={item}>
-                <Details>{item}</Details>
-              </DetailsListItem>
-            ))}
-          </DetailsList>
+          <DescriptionItem style={{ marginBottom: "15px" }}>
+            Accessories and functionalities:
+          </DescriptionItem>
+          <DetailsList items={accesoirsAndFunctionalities} />
         </div>
         <div>
-          <p>Rental conditions</p>
+          <DescriptionItem style={{ marginBottom: "10px" }}>
+            Rental conditions
+          </DescriptionItem>
           <ConditionsList>
             <ConditionsItem>
               {label}: <ConditionValue>{age}</ConditionValue>
@@ -84,7 +83,7 @@ const CarInfo = ({ item }) => {
               <ConditionsItem key={item}>{item}</ConditionsItem>
             ))}
             <ConditionsItem>
-              Mileage: <ConditionValue>{item.mileage}</ConditionValue>
+              Mileage: <ConditionValue>{mileage}</ConditionValue>
             </ConditionsItem>
             <ConditionsItem>
               Price: <ConditionValue>{item.rentalPrice}</ConditionValue>
@@ -92,6 +91,8 @@ const CarInfo = ({ item }) => {
           </ConditionsList>
         </div>
         <Button
+          component={Link}
+          onClick={handlePhoneCall}
           variant="contained"
           sx={{
             backgroundColor: "#3470FF",
@@ -99,11 +100,15 @@ const CarInfo = ({ item }) => {
             padding: "12px 50px",
           }}
         >
-          Car Rental
+          Rental Car
         </Button>
       </div>
     </Container>
   );
+};
+
+CarInfo.propTypes = {
+  item: PropTypes.object.isRequired,
 };
 
 export default CarInfo;

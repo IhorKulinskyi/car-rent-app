@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { formatAddress } from "helpers";
@@ -12,23 +13,31 @@ import Modal from "@mui/material/Modal";
 import Box from "@mui/material/Box";
 import fallbackImageUrl from "../../public/images/fallback_sedan.jpg";
 import CarInfo from "components/CarInfo";
+import DetailsList from "components/DetailsList";
 import {
   ImgWrapper,
   DescriptionWrapper,
   AdvertImage,
-  Details,
-  DetailsList,
-  DetailsListItem,
   Description,
   DescriptionItem,
   ModalContainer,
 } from "./AdvertCard.styled";
 
 const AdvertCard = ({ item }) => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
   const dispatch = useDispatch();
-  const isFavorite = useSelector((state) => isAdvertFavorite(state, item.id));
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const { city, country } = formatAddress(item.address);
+  const isFavorite = useSelector((state) => isAdvertFavorite(state, item.id));
+
+  const details = [
+    city,
+    country,
+    item.rentalCompany,
+    item.type,
+    item.make,
+    item.id,
+    item.accessories[0],
+  ];
 
   const toggleModal = () => {
     setIsModalOpen((state) => !state);
@@ -83,29 +92,7 @@ const AdvertCard = ({ item }) => {
           </DescriptionItem>
         </DescriptionWrapper>
         <div>
-          <DetailsList>
-            <DetailsListItem>
-              <Details>{city}</Details>
-            </DetailsListItem>
-            <DetailsListItem>
-              <Details>{country}</Details>
-            </DetailsListItem>
-            <DetailsListItem>
-              <Details>{item.rentalCompany}</Details>
-            </DetailsListItem>
-            <DetailsListItem>
-              <Details>{item.type}</Details>
-            </DetailsListItem>
-            <DetailsListItem>
-              <Details>{item.make}</Details>
-            </DetailsListItem>
-            <DetailsListItem>
-              <Details>{item.id}</Details>
-            </DetailsListItem>
-            <DetailsListItem>
-              <Details>{item.accessories[0]}</Details>
-            </DetailsListItem>
-          </DetailsList>
+          <DetailsList items={details} />
         </div>
         <Button
           variant="contained"
@@ -120,7 +107,11 @@ const AdvertCard = ({ item }) => {
           Learn More
         </Button>
       </Paper>
-      <Modal open={isModalOpen} onClose={handleCloseModal}>
+      <Modal
+        open={isModalOpen}
+        onClose={handleCloseModal}
+        sx={{ overflow: "scroll", height: "800px" }}
+      >
         <Box
           position="absolute"
           top="2%"
@@ -144,6 +135,10 @@ const AdvertCard = ({ item }) => {
       </Modal>
     </>
   );
+};
+
+AdvertCard.propTypes = {
+  item: PropTypes.object.isRequired,
 };
 
 export default AdvertCard;

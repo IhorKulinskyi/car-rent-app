@@ -17,7 +17,7 @@ const AdvertGrid = ({ items }) => {
 };
 
 AdvertGrid.propTypes = {
-  items: PropTypes.array,
+  items: PropTypes.array.isRequired,
 };
 
 export default AdvertGrid;

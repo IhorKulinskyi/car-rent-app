@@ -15,6 +15,7 @@ export const ConditionsList = styled.ul`
   display: inline-flex;
   flex-wrap: wrap;
   gap: 8px;
+  margin-bottom: 15px;
 `;
 
 export const ImgWrapper = styled.div`
