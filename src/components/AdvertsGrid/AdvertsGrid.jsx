@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import AdvertCard from "components/AdvertCard";
 import Grid from "@mui/material/Grid";
 
@@ -13,6 +14,10 @@ const AdvertGrid = ({ items }) => {
       </Grid>
     </div>
   );
+};
+
+AdvertGrid.propTypes = {
+  items: PropTypes.array,
 };
 
 export default AdvertGrid;

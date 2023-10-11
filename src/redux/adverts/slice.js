@@ -3,6 +3,7 @@ import { fetchAdverts } from "./operations";
 
 const initialState = {
   items: [],
+  page: 1,
   isLoading: false,
   error: null,
 };
@@ -19,9 +20,14 @@ const handleRejected = (state, { payload }) => {
 export const advertsSlice = createSlice({
   name: "adverts",
   initialState,
+  reducers: {
+    incrementPage: (state) => {
+      state.page += 1;
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(fetchAdverts.fulfilled, (state, action) => {
-      state.items = action.payload;
+      state.items.push(...action.payload);
       state.isLoading = false;
       state.error = null;
     });
@@ -29,5 +35,7 @@ export const advertsSlice = createSlice({
     builder.addCase(fetchAdverts.rejected, handleRejected);
   },
 });
+
+export const { incrementPage } = advertsSlice.actions;
 
 export default advertsSlice.reducer;

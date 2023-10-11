@@ -56,7 +56,6 @@ const AdvertCard = ({ item }) => {
             alt={`${item.make} ${item.model}`}
             src={item.img}
             onError={(e) => {
-              console.log(e);
               e.target.src = fallbackImageUrl;
             }}
           />
