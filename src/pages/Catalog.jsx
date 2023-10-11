@@ -22,16 +22,16 @@ const Catalog = () => {
   const isLoading = useSelector(selectIsLoading);
   const page = useSelector(selectPage);
   const isFilterEmpty = useSelector(selectIsFilterEmty);
-  const isInitialRender = useRef(true);
+  // const isInitialRender = useRef(true);
   const storedPage = localStorage.getItem("page");
   const visitedPage = storedPage ? parseInt(storedPage) : 1;
   const hasSearchResults = !!filteredAdverts.length;
 
   useEffect(() => {
-    if (isInitialRender.current) {
-      isInitialRender.current = false;
-      return;
-    }
+    // if (isInitialRender.current) {
+    //   isInitialRender.current = false;
+    //   return;
+    // }
     if (adverts.length !== 0 && page === visitedPage) {
       return;
     }
