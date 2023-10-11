@@ -7,7 +7,7 @@ import {
   selectPage,
 } from "redux/adverts/selectors";
 import { fetchAdverts } from "redux/adverts/operations";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Spinner from "components/Spinner";
 import Button from "@mui/material/Button";
@@ -22,23 +22,23 @@ const Catalog = () => {
   const isLoading = useSelector(selectIsLoading);
   const page = useSelector(selectPage);
   const isFilterEmpty = useSelector(selectIsFilterEmty);
-  // const isInitialRender = useRef(true);
+  const isInitialRender = useRef(true);
   const storedPage = localStorage.getItem("page");
   const visitedPage = storedPage ? parseInt(storedPage) : 1;
   const hasSearchResults = !!filteredAdverts.length;
 
   useEffect(() => {
-    // if (isInitialRender.current) {
-    //   isInitialRender.current = false;
-    //   return;
-    // }
-    if ( page === visitedPage) {
+    if (isInitialRender.current) {
+      isInitialRender.current = false;
+      return;
+    }
+    if (adverts.length !== 0 && page === visitedPage) {
       return;
     }
     dispatch(fetchAdverts(page));
     localStorage.setItem("page", page);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [dispatch, page, visitedPage]);
+  }, [dispatch, page]);
 
   const handleLoadMore = () => {
     dispatch(incrementPage());
