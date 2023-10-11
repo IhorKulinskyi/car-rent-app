@@ -7,7 +7,7 @@ import {
   selectPage,
 } from "redux/adverts/selectors";
 import { fetchAdverts } from "redux/adverts/operations";
-import { useEffect, useRef } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Spinner from "components/Spinner";
 import Button from "@mui/material/Button";
