@@ -38,7 +38,7 @@ const Catalog = () => {
     dispatch(fetchAdverts(page));
     localStorage.setItem("page", page);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [dispatch, page]);
+  }, [dispatch, page, visitedPage]);
 
   const handleLoadMore = () => {
     dispatch(incrementPage());
