@@ -32,7 +32,7 @@ const Catalog = () => {
     //   isInitialRender.current = false;
     //   return;
     // }
-    if (adverts.length !== 0 && page === visitedPage) {
+    if ( page === visitedPage) {
       return;
     }
     dispatch(fetchAdverts(page));
